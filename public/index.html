@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Classical History · Vena tizimi & Bismark</title>
+    <!-- Animate.css & Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* copy/paste ni oldini oladi */
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'Garamond', serif;
+            background: linear-gradient(145deg, #2b1b0e 0%, #3f2c14 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            color: #f0e6d2;
+        }
+
+        /* anti-copy, right-click blok */
+        body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* asosiy karta */
+        .test-container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(245, 235, 220, 0.95);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.7), 0 0 0 2px #b68b5c inset, 0 0 0 4px #4f3a1e inset;
+            padding: 28px 22px;
+            border: 6px solid #c9a87c;
+            transition: all 0.2s;
+            color: #2e1e0f;
+            position: relative;
+            z-index: 5;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 rgba(184, 134, 11, 0.2);
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            color: #4f3a1e;
+            border-bottom: 3px double #b68b5c;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-family: 'Garamond', serif;
+        }
+
+        .gold-accent {
+            color: #b8860b;
+            font-weight: bold;
+        }
+
+        /* ism kiritish qismi */
+        .name-section {
+            background: #e8d9c0;
+            border-radius: 60px;
+            padding: 18px 24px;
+            border: 2px solid #c9a87c;
+            box-shadow: inset 0 2px 5px #ab8b5e;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .name-section label {
+            font-size: 1.3rem;
+            color: #4f3a1e;
+            font-weight: bold;
+        }
+
+        .name-section input {
+            flex: 2 1 250px;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 40px;
+            background: #fffcf0;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+            border: 2px solid #b68b5c;
+            outline: none;
+            transition: 0.2s;
+            color: #2e1e0f;
+        }
+
+        .name-section input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn {
+            background: #8b5a2b;
+            border: none;
+            background: linear-gradient(145deg, #a97c4b, #7b4f24);
+            color: #fffbee;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 12px 28px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            border: 2px solid #e3b87c;
+            box-shadow: 0 5px 0 #4f3a1e, 0 8px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.1s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #4f3a1e, 0 6px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            transform: none;
+            pointer-events: none;
+            filter: grayscale(0.5);
+        }
+
+        /* savollar paneli */
+        .quiz-panel {
+            background: #f4e9da;
+            border-radius: 40px;
+            padding: 28px 20px;
+            border: 2px solid #b68b5c;
+            box-shadow: inset 0 0 0 2px #fbf3e6, 0 15px 20px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .question-counter {
+            font-size: 1.2rem;
+            background: #4f3a1e;
+            color: #f5e1be;
+            padding: 6px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid #d4af37;
+        }
+
+        .question-text {
+            font-size: 1.6rem;
+            line-height: 1.3;
+            color: #2c1c0b;
+            margin: 20px 0 30px;
+            font-weight: 600;
+            background: #fffcf0;
+            padding: 20px 20px;
+            border-radius: 30px;
+            box-shadow: inset 0 2px 6px #bba477;
+            border: 1px solid #b68b5c;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 30px 0 20px;
+        }
+
+        .option {
+            background: #fffcf0;
+            border: 2px solid #b68b5c;
+            border-radius: 60px;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.15s;
+            box-shadow: 0 4px 0 #8b6946;
+        }
+
+        .option.selected {
+            background: #e6d5b8;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px #f1d48a, 0 4px 0 #8b6946;
+        }
+
+        .option input[type="radio"] {
+            appearance: none;
+            width: 26px;
+            height: 26px;
+            border: 2px solid #b68b5c;
+            border-radius: 50%;
+            margin-right: 22px;
+            position: relative;
+            background: white;
+        }
+        .option input[type="radio"]:checked {
+            background: #d4af37;
+            border-color: #7b4f24;
+            box-shadow: inset 0 0 0 5px white;
+        }
+        .option label {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #2e1e0f;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .leaderboard {
+            background: #4a3721;
+            border-radius: 30px;
+            padding: 20px;
+            border: 3px solid #c9a87c;
+            color: #ffefd7;
+            box-shadow: 0 10px 18px black;
+            margin-top: 30px;
+        }
+
+        .leaderboard h2 {
+            color: #f5d98f;
+            border-left: 10px solid #d4af37;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ranking-table th {
+            text-align: left;
+            padding: 12px 8px;
+            background: #7b5f3a;
+            color: #fbe9c3;
+            font-size: 1.2rem;
+            border-bottom: 3px solid #d4af37;
+        }
+        .ranking-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #b68b5c;
+            font-size: 1.2rem;
+        }
+        .ranking-table tr:last-child td {
+            border-bottom: none;
+        }
+        .rank-1 td:first-child { color: #ffd966; font-weight: bold; font-size: 1.4rem; }
+        .rank-2 td:first-child { color: #c0c0c0; } 
+        .rank-3 td:first-child { color: #cd7f32; }
+
+        /* blur overlay (anti-cheat) */
+        .blur-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(128, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 20px;
+            border: 12px solid #a32020;
+            box-shadow: 0 0 0 4000px rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .blur-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .blur-overlay i {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: #ffbaba;
+        }
+        .blur-overlay small {
+            font-size: 1.3rem;
+            margin-top: 25px;
+            color: #ffc6c6;
+        }
+
+        /* natija oynasi */
+        .result-box {
+            background: #fcf3e3;
+            border-radius: 50px;
+            padding: 30px;
+            text-align: center;
+            border: 5px solid #b68b5c;
+        }
+        .result-box h2 {
+            font-size: 2.8rem;
+            color: #7b4f24;
+        }
+        .score-badge {
+            font-size: 4rem;
+            background: #d4af37;
+            color: #2b1e0c;
+            display: inline-block;
+            padding: 10px 50px;
+            border-radius: 80px;
+            margin: 25px 0;
+            border: 4px solid white;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #bba477;
+        }
+
+        /* mobil */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .question-text { font-size: 1.3rem; }
+            .option label { font-size: 1.1rem; }
+            .btn { font-size: 1rem; padding: 10px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BLUR OVERLAY (ANTI-CHEAT) -->
+    <div class="blur-overlay" id="blurOverlay">
+        <i class="fas fa-exclamation-triangle fa-beat-fade"></i>
+        <span>DIQQAT! BOSHQA TABGA O‘TDINGIZ</span>
+        <small>Test natijasi bekor qilindi (0 ball)</small>
+    </div>
+
+    <div class="test-container animate__animated animate__fadeIn" id="mainContainer">
+        <!-- ISM KIRITISH BOSQICHI -->
+        <div id="nameSection" class="name-section">
+            <label><i class="fas fa-scroll" style="color:#b8860b;"></i> Tarixchi ismi:</label>
+            <input type="text" id="userNameInput" placeholder="Masalan: fon Metternich" value="">
+            <button class="btn" id="startTestBtn"><i class="fas fa-play"></i> Testni boshlash</button>
+        </div>
+
+        <!-- TEST ASOSIY QISM (dastlab yashirin) -->
+        <div id="quizArea" style="display: none;">
+            <div class="quiz-panel">
+                <div class="question-counter" id="questionCounter">1 / 15</div>
+                <div class="question-text" id="questionText">Savol yuklanmoqda...</div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="nav-buttons">
+                    <button class="btn" id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Oldingi</button>
+                    <button class="btn" id="nextBtn">Keyingi <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <button class="btn" id="finishBtn" style="width: 100%; margin-top: 20px; background: #9e6b3b;">Testni yakunlash</button>
+            </div>
+        </div>
+
+        <!-- NATIJA PANELI (dastlab yashirin) -->
+        <div id="resultArea" style="display: none;" class="result-box">
+            <h2><i class="fas fa-crown" style="color:#d4af37;"></i> Tarixiy natija</h2>
+            <div id="finalScoreMessage" class="score-badge">0</div>
+            <button class="btn" id="restartBtn"><i class="fas fa-redo-alt"></i> Yangi test</button>
+        </div>
+
+        <!-- REYTING (doimo ko'rinadi, serverdan olinadi) -->
+        <div class="leaderboard animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-trophy" style="color:#f5d742;"></i> Jonli reyting (leaderboard)</h2>
+            <table class="ranking-table" id="rankingTable">
+                <thead><tr><th>#</th><th>Ism</th><th>Ball</th></tr></thead>
+                <tbody id="rankingBody">
+                    <tr><td colspan="3" style="text-align:center;">Yuklanmoqda...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer-note">✨ Vena kongressi ruhida — 1825</div>
+    </div>
+
+    <script>
+        (function() {
+            // -------------------- SAVOLLAR (BERILGAN) --------------------
+            const questions = [
+                { question: "1. 1815-yildagi Vena kongressining asosiy maqsadi nimadan iborat edi?",
+                  options: ["A) Kuchlar muvozanatini tiklash va barqarorlikni ta’minlash", "B) Milliy davlatlarni qo‘llab-quvvatlash", "C) Demokratik tizimlarni yoyish", "D) Mustamlakachilikni tugatish"],
+                  correct: 0 },
+                { question: "2. “Kuchlar muvozanati” siyosati qaysi holatni oldini olishga qaratilgan edi?",
+                  options: ["A) Iqtisodiy tanazzulni", "B) Bir davlatning haddan tashqari kuchayishini", "C) Inqilobiy harakatlarni", "D) Mustamlakachilikni"],
+                  correct: 1 },
+                { question: "3. “Yevropa kontserti” tizimining eng muhim jihati nimada edi?",
+                  options: ["A) Harbiy ittifoqlar tuzish", "B) Mustamlakalarni taqsimlash", "C) Davlatlar o‘rtasida muntazam maslahatlashuvlar", "D) Milliy davlatlarni qo‘llab-quvvatlash"],
+                  correct: 2 },
+                { question: "4. Napoleon urushlaridan keyin konservativ siyosat nimani saqlab qolishga harakat qildi?",
+                  options: ["A) Demokratik boshqaruvni", "B) Respublikalarni", "C) Milliy davlatlarni", "D) Monarxik tartibni"],
+                  correct: 3 },
+                { question: "5. Vena tizimi qachon sezilarli darajada zaiflashishni boshladi?",
+                  options: ["A) 1820-yillarda", "B) 1850–1870-yillarda", "C) 1900-yillarda", "D) 1914-yildan keyin"],
+                  correct: 1 },
+                { question: "6. Bismark siyosatining asosiy xususiyati nimada edi?",
+                  options: ["A) Diniy qadriyatlarga asoslanish", "B) Demokratik islohotlarni kuchaytirish", "C) Amaliy manfaatlarga asoslangan siyosat", "D) Mustamlakachilikni tugatish"],
+                  correct: 2 },
+                { question: "7. Germaniya birlashganidan keyin Bismarkning asosiy tashqi siyosiy maqsadi nima edi?",
+                  options: ["A) Fransiyani diplomatik jihatdan ajratib qo‘yish", "B) Angliya bilan ittifoq tuzish", "C) Rossiyani zaiflashtirish", "D) Amerikaga ta’sir o‘tkazish"],
+                  correct: 0 },
+                { question: "8. Bismark yaratgan ittifoqlar tizimining asosiy vazifasi nimadan iborat edi?",
+                  options: ["A) Yevropada urush boshlash", "B) Kuchlar muvozanatini saqlash", "C) Mustamlakalarni kengaytirish", "D) Demokratik tizimlarni yoyish"],
+                  correct: 1 },
+                { question: "9. “Real siyosat” tushunchasi nimani anglatadi?",
+                  options: ["A) Axloqiy va ideal siyosat yuritish", "B) Faqat harbiy kuchga tayanish", "C) Diniy tamoyillarga asoslanish", "D) Amaliy va manfaatga asoslangan siyosat"],
+                  correct: 3 },
+                { question: "10. Bismark lavozimdan ketgandan keyin qanday o‘zgarish yuz berdi?",
+                  options: ["A) Yevropada tinchlik mustahkamlandi", "B) Ittifoqlar tizimi zaiflashdi", "C) Mustamlakachilik tugadi", "D) Davlatlar o‘rtasida hamkorlik kuchaydi"],
+                  correct: 1 },
+                { question: "11. 19-asrda Osiyoda yuzaga kelgan teng bo‘lmagan shartnomalar nimani ko‘rsatadi?",
+                  options: ["A) Teng diplomatik aloqalarni", "B) Mustaqil iqtisodiy rivojlanishni", "C) Kuchli davlatlarning zaif davlatlarga bosimini", "D) Savdo erkinligini"],
+                  correct: 2 },
+                { question: "12. 1884–1885-yillardagi Berlin konferensiyasining asosiy natijasi nima bo‘ldi?",
+                  options: ["A) Afrika davlatlarining mustaqilligi", "B) Afrika hududlarining Yevropa davlatlari o‘rtasida bo‘linishi", "C) Afrika davlatlari ittifoqi", "D) Mustamlakachilikning tugashi"],
+                  correct: 1 },
+                { question: "13. Monro doktrinasi qanday siyosiy tamoyilni ifodalaydi?",
+                  options: ["A) Yevropa davlatlari Amerikaga aralashmasligi kerak", "B) Amerika Yevropa siyosatiga aralashishi kerak", "C) Mustamlakachilikni kengaytirish", "D) Harbiy ittifoqlar tuzish"],
+                  correct: 0 },
+                { question: "14. 20-asr boshida xalqaro tizimning beqarorlashuviga asosiy sabab nima edi?",
+                  options: ["A) Texnologiyaning rivojlanmaganligi", "B) Iqtisodiy tanqislik", "C) Ittifoqlar tizimining murakkablashuvi", "D) Diplomatiyaning kuchayishi"],
+                  correct: 2 },
+                { question: "15. 1914-yildagi Sarayevo voqeasi qanday xulosani ko‘rsatadi?",
+                  options: ["A) Diplomatiya barqaror bo‘lganini", "B) Mustamlakachilik tugaganini", "C) Ittifoqlar tizimi samarali bo‘lganini", "D) Kichik mojaro global urushga aylanishi mumkinligini"],
+                  correct: 3 }
+            ];
+
+            // -------------------- GLOBAL STATE --------------------
+            let currentUser = '';
+            let userAnswers = new Array(15).fill(null);
+            let currentIndex = 0;
+            let testActive = false;
+            let testFinished = false;
+
+            // DOM elementlar
+            const blurOverlay = document.getElementById('blurOverlay');
+            const nameSection = document.getElementById('nameSection');
+            const quizArea = document.getElementById('quizArea');
+            const resultArea = document.getElementById('resultArea');
+            const startBtn = document.getElementById('startTestBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const finishBtn = document.getElementById('finishBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const questionCounter = document.getElementById('questionCounter');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const finalScoreMessage = document.getElementById('finalScoreMessage');
+            const userNameInput = document.getElementById('userNameInput');
+            const rankingBody = document.getElementById('rankingBody');
+
+            // -------------------- ANTICHEAT --------------------
+            window.addEventListener('blur', () => {
+                if (testActive && !testFinished) {
+                    blurOverlay.classList.add('active');
+                    finishTestDueToCheat(0);
+                }
+            });
+
+            window.addEventListener('focus', () => {
+                blurOverlay.classList.remove('active');
+            });
+
+            function disableRightClick(e) {
+                e.preventDefault();
+                return false;
+            }
+            document.addEventListener('contextmenu', disableRightClick);
+            document.addEventListener('copy', (e) => e.preventDefault());
+            document.addEventListener('cut', (e) => e.preventDefault());
+            document.addEventListener('paste', (e) => e.preventDefault());
+
+            // -------------------- REYTINGNI SERVERDAN OLISH (GET /api/ranking) --------------------
+            async function fetchRanking() {
+                try {
+                    const response = await fetch('/api/ranking');
+                    if (!response.ok) throw new Error('Server javob bermadi');
+                    const data = await response.json();
+                    renderRanking(data);
+                } catch (error) {
+                    console.error('Reytingni yuklashda xato:', error);
+                    rankingBody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#ffaaaa;">Reyting yuklanmadi. Server bilan bog‘lanishni tekshiring.</td></tr>';
+                }
+            }
+
+            function renderRanking(ranks) {
+                if (!Array.isArray(ranks) || ranks.length === 0) {
+                    rankingBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">Hozircha reyting mavjud emas.</td></tr>';
+                    return;
+                }
+                const sorted = ranks.sort((a, b) => b.score - a.score);
+                let html = '';
+                sorted.slice(0, 20).forEach((r, idx) => {
+                    const rankClass = idx === 0 ? 'rank-1' : (idx === 1 ? 'rank-2' : (idx === 2 ? 'rank-3' : ''));
+                    html += `<tr class="${rankClass}"><td>${idx + 1}</td><td>${r.name || 'Noma’lum'}</td><td style="font-weight:bold;">${r.score}</td></tr>`;
+                });
+                rankingBody.innerHTML = html;
+            }
+
+            // -------------------- NATIJANI SAQLASH (POST /api/save) --------------------
+            async function saveResult(name, score) {
+                try {
+                    const response = await fetch('/api/save', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: name || 'Anonim', score: score })
+                    });
+                    if (!response.ok) console.warn('Server saqlashda xato');
+                } catch (e) {
+                    console.log('Serverga ulanishda xato (offline yoki backend yo‘q)');
+                }
+                // Har qanday holatda reytingni yangilaymiz (serverdan olishga harakat)
+                fetchRanking();
+            }
+
+            // -------------------- TEST LOGIKASI --------------------
+            function renderQuestion(index) {
+                const q = questions[index];
+                questionCounter.innerText = `${index + 1} / 15`;
+                questionText.innerText = q.question;
+                let optsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    const checked = userAnswers[index] === optIdx ? 'checked' : '';
+                    optsHtml += `
+                        <div class="option ${checked ? 'selected' : ''}" data-qidx="${index}" data-oidx="${optIdx}">
+                            <input type="radio" name="q${index}" value="${optIdx}" id="q${index}opt${optIdx}" ${checked}>
+                            <label for="q${index}opt${optIdx}">${opt}</label>
+                        </div>
+                    `;
+                });
+                optionsContainer.innerHTML = optsHtml;
+
+                document.querySelectorAll('.option').forEach(optDiv => {
+                    optDiv.addEventListener('click', function(e) {
+                        const qIdx = parseInt(this.dataset.qidx);
+                        const oIdx = parseInt(this.dataset.oidx);
+                        if (!isNaN(qIdx) && !isNaN(oIdx)) {
+                            userAnswers[qIdx] = oIdx;
+                            document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+                            this.classList.add('selected');
+                            this.querySelector('input[type="radio"]').checked = true;
+                        }
+                    });
+                });
+
+                prevBtn.disabled = (index === 0);
+                nextBtn.disabled = (index === 14);
+            }
+
+            function calculateScore() {
+                let correct = 0;
+                userAnswers.forEach((ans, idx) => {
+                    if (ans !== null && ans === questions[idx].correct) correct++;
+                });
+                return correct;
+            }
+
+            function finishTest(score) {
+                testActive = false;
+                testFinished = true;
+                quizArea.style.display = 'none';
+                resultArea.style.display = 'block';
+                finalScoreMessage.innerText = `${score} / 15`;
+                saveResult(currentUser, score);
+            }
+
+            function finishTestDueToCheat(score) {
+                if (!testActive || testFinished) return;
+                testActive = false;
+                testFinished = true;
+                userAnswers.fill(null);
+                quizArea.style.display = 'none';
+                resultArea.style.display = 'block';
+                finalScoreMessage.innerText = `0 / 15 (aldash aniqlandi)`;
+                saveResult(currentUser, 0);
+            }
+
+            function startTest() {
+                const name = userNameInput.value.trim();
+                if (name === '') {
+                    alert('Iltimos, ismingizni kiriting');
+                    return;
+                }
+                currentUser = name;
+                userAnswers.fill(null);
+                currentIndex = 0;
+                testActive = true;
+                testFinished = false;
+                nameSection.style.display = 'none';
+                quizArea.style.display = 'block';
+                resultArea.style.display = 'none';
+                blurOverlay.classList.remove('active');
+                renderQuestion(0);
+                fetchRanking(); // yangilash
+            }
+
+            function restartTest() {
+                testActive = false;
+                testFinished = false;
+                nameSection.style.display = 'flex';
+                quizArea.style.display = 'none';
+                resultArea.style.display = 'none';
+                userNameInput.value = '';
+                userAnswers.fill(null);
+                blurOverlay.classList.remove('active');
+                fetchRanking(); // reytingni qayta yuklash (o‘zgarish bo‘lsa)
+            }
+
+            // Event listeners
+            startBtn.addEventListener('click', startTest);
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    renderQuestion(currentIndex);
+                }
+            });
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < 14) {
+                    currentIndex++;
+                    renderQuestion(currentIndex);
+                }
+            });
+            finishBtn.addEventListener('click', () => {
+                if (testActive) {
+                    const score = calculateScore();
+                    finishTest(score);
+                }
+            });
+            restartBtn.addEventListener('click', restartTest);
+
+            // Sahifa yuklanganda reytingni olish
+            window.addEventListener('load', () => {
+                fetchRanking();
+            });
+
+        })();
+    </script>
+    <!-- Backend: GET /api/ranking va POST /api/save ga tayyor. -->
+</body>
+</html>
